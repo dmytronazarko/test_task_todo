@@ -12,7 +12,7 @@ class App extends Component {
 		this.state = {
 			counter: 0,
 			todos: [],
-			visibility: 'SHOW_ALL'
+			visibile: 'SHOW_ALL'
 		}
 	}
 
@@ -47,15 +47,12 @@ class App extends Component {
 
 	toggleLink = (btnType) => {
 		this.setState({
-			visibility: btnType
+			visibile: btnType
 		})
 	}
 
 	filterTodos = (todos) => {
-		switch (this.state.visibility) {
-			case 'SHOW_ALL':
-				return todos
-				break;
+		switch (this.state.visibile) {
 			case 'SHOW_ACTIVE':
 				return todos.slice().filter(todo => !todo.completed)
 				break;
@@ -63,7 +60,7 @@ class App extends Component {
 				return todos.slice().filter(todo => todo.completed)
 				break;
 			default:
-				console.log('Wrong button type ' + btnType);
+				return todos
 		}
 	}
 
@@ -72,7 +69,9 @@ class App extends Component {
 			<div className="app">
 				<AddTodo onSubmit={this.onSubmit} inputRef={element => this.textInput = element} />
 				<TodoList todos={this.filterTodos(this.state.todos)} toggleTodo={this.toggleTodo} />
-				{this.state.todos.length ? <Footer toggleLink={this.toggleLink}/> : null}
+				{this.state.todos.length ?
+					<Footer toggleLink={this.toggleLink} visible={this.state.visibile}/>
+					: null}
 			</div>
 		)
 	}
