@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AddTodo = ({ onSubmit, inputRef }) => {
 	return (
@@ -9,5 +10,10 @@ const AddTodo = ({ onSubmit, inputRef }) => {
 		</div>
 	)
 }
+
+AddTodo.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+	inputRef: PropTypes.func.isRequired
+};
 
 export default AddTodo

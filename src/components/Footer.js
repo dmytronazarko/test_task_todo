@@ -1,8 +1,9 @@
 import React from 'react'
 import Link from './Link'
+import PropTypes from 'prop-types'
 
-const Footer = ({ toggleLink, clearCompleted, visible}) => (
-	<div class="footer">
+const Footer = ({ toggleLink, clearCompleted, visible }) => (
+	<div className="footer">
 		<span>Show:</span>
 		<Link onClick={() => toggleLink("SHOW_ALL")}
 			className="link"
@@ -26,5 +27,11 @@ const Footer = ({ toggleLink, clearCompleted, visible}) => (
 		/>
 	</div>
 )
+
+Footer.propTypes = {
+	toggleLink: PropTypes.func.isRequired,
+	clearCompleted: PropTypes.func.isRequired,
+	visible: PropTypes.string.isRequired
+}
 
 export default Footer
