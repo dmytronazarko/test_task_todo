@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Link = ({ active, text, onClick }) => (
-	<button className="link" onClick={onClick} disabled={active}>
+const Link = ({ className, onClick, active, text }) => (
+	<button className={className} onClick={onClick} disabled={active}>
 		{text}
 	</button>
 )

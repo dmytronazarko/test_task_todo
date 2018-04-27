@@ -19,17 +19,19 @@ class App extends Component {
 	onSubmit = (e) => {
 		e.preventDefault()
 
-		const text = this.textInput.value
+		const text = this.textInput.value;
 		if (!text.trim()) {
 			return
 		}
 
 		this.setState(prevState => ({
 			todos: [...prevState.todos, {
-				id: this.state.counter++,
+				id: prevState.counter,
 				text: text,
 				completed: false
-			}]
+			}],
+			counter: ++prevState.counter
+
 		}))
 
 		this.textInput.value = ''
@@ -51,6 +53,12 @@ class App extends Component {
 		})
 	}
 
+	clearCompleted = () => {
+		this.setState(prevState => ({
+			todos: prevState.todos.filter(todo => !todo.completed)
+		}))
+	}
+
 	filterTodos = (todos) => {
 		switch (this.state.visibile) {
 			case 'SHOW_ACTIVE':
@@ -69,9 +77,9 @@ class App extends Component {
 			<div className="app">
 				<AddTodo onSubmit={this.onSubmit} inputRef={element => this.textInput = element} />
 				<TodoList todos={this.filterTodos(this.state.todos)} toggleTodo={this.toggleTodo} />
-				{this.state.todos.length ?
-					<Footer toggleLink={this.toggleLink} visible={this.state.visibile}/>
-					: null}
+				{!!this.state.todos.length &&
+					<Footer toggleLink={this.toggleLink} clearCompleted={this.clearCompleted} visible={this.state.visibile}/>
+				}
 			</div>
 		)
 	}
