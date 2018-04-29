@@ -78,7 +78,7 @@ class App extends Component {
 				<AddTodo onSubmit={this.onSubmit} inputRef={element => this.textInput = element} />
 				<TodoList todos={this.filterTodos(this.state.todos)} toggleTodo={this.toggleTodo} />
 				{!!this.state.todos.length &&
-					<Footer toggleLink={this.toggleLink} clearCompleted={this.clearCompleted} visible={this.state.visibile}/>
+					<Footer toggleLink={this.toggleLink} clearCompleted={this.clearCompleted} visible={this.state.visibile} />
 				}
 			</div>
 		)

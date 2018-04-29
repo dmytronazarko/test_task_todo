@@ -1,10 +1,15 @@
+import { serverPort } from './config';
+import * as db from './db';
 import express from 'express';
+import bodyParser from 'body-parser';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from '../src/App';
 
-const app = express();
+db.setUpConnection();
 
+const app = express();
+app.use(bodyParser.json());
 app.use(express.static('./build'));
 
 app.get('/', (req, res) => {
@@ -22,6 +27,24 @@ app.get('/', (req, res) => {
 	`);
 });
 
-app.listen(process.env.PORT || 3000, () => {
-	console.log('Server is listening');
+app.get('/api/todos', (req, res) => {
+	db.getTodos().then(data =>
+		res.json(data)
+	);
+});
+
+app.post('/api/todos', (req, res) => {
+	db.createTodo(req.body).then(data =>
+		res.json(data)
+	);
+});
+
+app.delete('/api/todos', (req, res) => {
+	db.deleteTodos(req.body).then(data =>
+		res.status(204).json(data)
+	);
+});
+
+app.listen(serverPort, () => {
+	console.log(`Server is listening on port ${serverPort}`);
 });

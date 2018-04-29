@@ -45,7 +45,7 @@ const browserConfig = {
 	},
 	plugins: [
 		new ExtractTextPlugin({
-			filename: `${output}/css/[name].css`
+			filename: `${output}css/[name].css`
 		})
 	]
 };

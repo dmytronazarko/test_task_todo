@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"dev": "NODE_ENV=development webpack -w --mode=development & NODE_ENV=development node ./build/index.js",
+		"dev": "NODE_ENV=development webpack -w --mode=development & NODE_ENV=development nodemon ./build/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -18,7 +18,10 @@
 	},
 	"homepage": "https://github.com/dmytronazarko/test_task_todo",
 	"dependencies": {
+		"body-parser": "^1.18.2",
 		"express": "^4.16.3",
+		"mongoose": "^5.0.16",
+		"nodemon": "^1.17.3",
 		"prop-types": "^15.6.1",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1"
