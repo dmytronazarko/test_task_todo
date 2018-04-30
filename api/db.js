@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { db } from './config.json'
+import { db } from './config'
 
 const TodoSchema = mongoose.Schema({
 	id: mongoose.Schema.Types.ObjectId,
@@ -26,6 +26,12 @@ export function createTodo({ text, completed }) {
 		text,
 		completed
 	}).save();
+}
+
+export function updateTodo(id, completed) {
+	return Todo.findOne({ id }).then(data => {
+		return Todo.findOneAndUpdate({ id }, { completed: !data.completed }, { new: true })
+	})
 }
 
 export function deleteTodos({ ids }) {

@@ -1,7 +1,8 @@
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-const output = './build/'
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const nodeExternals = require('webpack-node-externals');
+const output = './build/';
 
 const browserConfig = {
 	entry: './src/index.js',
@@ -53,6 +54,7 @@ const browserConfig = {
 const serverConfig = {
 	entry: './api/index.js',
 	target: 'node',
+	externals: [nodeExternals()],
 	output: {
 		path: __dirname,
 		filename: `${output}index.js`,

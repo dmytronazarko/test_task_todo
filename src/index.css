@@ -51,6 +51,9 @@ body {
 }
 
 .link {
+	display: inline-block;
+	padding: 0 10px;
+	text-decoration: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
 	font-size: 16px;
@@ -59,26 +62,27 @@ body {
 	transition: all .17s;
 }
 
+.link:hover {
+	border-color: #333;
+	color: #333;
+}
+
+.link.active {
+	border: 1px solid #333;
+	color: #333;
+}
+
 .link--clear {
 	float: right;
 	color: #333;
 	border-color: #333;
 }
 
-.link--clear[disabled] {
-	border: 0 !important;
-	color: #8e8e8e !important;
-}
-
-.link:hover {
-	border-color: #333;
-}
-
-.link:focus {
+.link--clear:focus {
 	outline: none;
 }
 
-.link[disabled] {
-	border: 1px solid #333;
-	color: #333;
+.link--clear[disabled] {
+	border: 0 !important;
+	color: #8e8e8e !important;
 }

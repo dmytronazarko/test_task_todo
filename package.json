@@ -18,13 +18,21 @@
 	},
 	"homepage": "https://github.com/dmytronazarko/test_task_todo",
 	"dependencies": {
+		"axios": "^0.18.0",
 		"body-parser": "^1.18.2",
 		"express": "^4.16.3",
+		"isomorphic-fetch": "^2.2.1",
 		"mongoose": "^5.0.16",
 		"nodemon": "^1.17.3",
 		"prop-types": "^15.6.1",
+		"qs": "^6.5.1",
 		"react": "^15.6.1",
-		"react-dom": "^15.6.1"
+		"react-dom": "^15.6.1",
+		"react-router": "^4.2.0",
+		"react-router-dom": "^4.2.2",
+		"serialize-javascript": "^1.5.0",
+		"source-map-support": "^0.5.5",
+		"webpack-node-externals": "^1.7.2"
 	},
 	"devDependencies": {
 		"autoprefixer": "^8.4.1",

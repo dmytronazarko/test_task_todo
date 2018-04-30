@@ -1,5 +1,5 @@
 {
-	"apiPrefix": "http://localhost:3000",
+	"apiPrefix": "http://localhost:3000/api",
 	"serverPort": "3000",
 	"db": {
 		"name": "todos",
