@@ -6,3 +6,6 @@
 3. Run ```yarn install && yarn run dev```.
 4. Go to [`http://localhost:3000/`](http://localhost:3000/)
 5. Enjoy!
+
+### Testing
+```yarn test```

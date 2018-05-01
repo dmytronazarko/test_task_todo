@@ -7,12 +7,12 @@ const Link = ({ className, onClick, active, text }) => (
 	</button>
 )
 
-// Link.propTypes = {
-// 	className: PropTypes.string,
-// 	onClick: PropTypes.func.isRequired,
-// 	active: PropTypes.bool.isRequired,
-// 	text: PropTypes.string.isRequired
-// }
+Link.propTypes = {
+	className: PropTypes.string,
+	onClick: PropTypes.func.isRequired,
+	active: PropTypes.bool.isRequired,
+	text: PropTypes.string.isRequired
+}
 
 export default Link
 

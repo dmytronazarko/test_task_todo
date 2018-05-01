@@ -20,32 +20,28 @@ class TodoList extends Component {
 			loading: todos ? false : true,
 		}
 
-		this.fetchRepos = this.fetchRepos.bind(this)
+		this.fetchTodos = this.fetchTodos.bind(this)
 		this.toggleTodo = this.toggleTodo.bind(this)
+		this.filterTodos = this.filterTodos.bind(this)
 	}
 
 	componentDidMount() {
 		if (!this.state.todos) {
-			this.fetchRepos(this.props.match.params.id)
+			this.fetchTodos(this.props.match.params.id)
 		}
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.match.params.id !== this.props.match.params.id) {
-			this.fetchRepos(this.props.match.params.id)
-		}
-	}
-
-	fetchRepos(lang) {
+	fetchTodos() {
 		this.setState(() => ({
 			loading: true
 		}))
 
-		this.props.fetchInitialData(lang)
+		this.props.fetchInitialData()
 			.then((todos) => this.setState(() => ({
 				todos,
 				loading: false,
-			})))
+			})
+		))
 	}
 
 	toggleTodo(id) {
@@ -60,7 +56,21 @@ class TodoList extends Component {
 				}))
 			}).catch(error => {
 				console.log(error);
-			});
+			}
+		);
+	}
+
+	filterTodos(todos) {
+		switch(this.props.match.params.show) {
+			case 'active':
+				return todos.filter(todo => !todo.completed);
+			break;
+			case 'completed':
+				return todos.filter(todo => todo.completed);
+			break;
+			default:
+				return todos
+		}
 	}
 
 	render() {
@@ -72,7 +82,7 @@ class TodoList extends Component {
 
 		return (
 			<ul className="todo-list">
-				{todos.map(todo =>
+				{this.filterTodos(todos).map(todo =>
 					<Todo
 						key={todo.id}
 						{...todo}

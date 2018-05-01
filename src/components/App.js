@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Switch, Redirect, Route } from 'react-router-dom'
 import axios from 'axios'
 import { apiPrefix } from '../../server/config'
 import qs from 'qs'
@@ -51,37 +51,39 @@ class App extends Component {
 			.map(todo => todo.id);
 
 		axios.delete(`${apiPrefix}/todos`, {
-			params: { ids },
-			paramsSerializer: function (params) {
-				return qs.stringify(params, { arrayFormat: 'repeat' })
-			},
-		})
-		.then(res => {
-			this.todoList.setState(prevState => ({
-				todos: prevState.todos.filter(todo =>
-					!todo.completed
-				)
-			}))
-		}).catch(error => {
-			console.log(error);
-		});
+				params: { ids },
+				paramsSerializer: function (params) {
+					return qs.stringify(params, { arrayFormat: 'repeat' })
+				},
+			})
+			.then(res => {
+				this.todoList.setState(prevState => ({
+					todos: prevState.todos.filter(todo =>
+						!todo.completed
+					)
+				}))
+			}).catch(error => {
+				console.log(error);
+			}
+		);
 	}
 
 	render() {
 		return (
-				<div className="app">
-					<AddTodo onSubmit={this.onSubmit} inputRef={element => this.textInput = element} />
+			<div className="app">
+				<AddTodo onSubmit={this.onSubmit} inputRef={element => this.textInput = element} />
 
-					<Switch>
-						{routes.map(({ path, exact, ...rest }) => (
-							<Route key={path} path={path} exact={exact} render={(props) => (
-								<TodoList ref={todoList => {this.todoList = todoList}} {...props} {...rest} />
-							)} />
-						))}
-					</Switch>
+				<Switch>
+					<Route exact path="/" render={() => (<Redirect to="/all" />)} />
+					{routes.map(({ path, exact, ...rest }) => (
+						<Route key={path} path={path} exact={exact} render={(props) => (
+							<TodoList ref={todoList => { this.todoList = todoList }} {...props} {...rest} />
+						)} />
+					))}
+				</Switch>
 
-					<Footer clearCompleted={this.clearCompleted} active={true}/>
-				</div>
+				<Footer clearCompleted={this.clearCompleted} active={true} />
+			</div>
 		)
 	}
 }

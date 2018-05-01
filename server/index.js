@@ -20,32 +20,40 @@ app.use(express.static("public"));
 app.get('/api/todos', (req, res) => {
 	db.getTodos().then(data =>
 		res.json(data)
-	);
+	).catch(error => {
+		console.log(error);
+	});
 });
 
 app.post('/api/todos', (req, res) => {
 	db.createTodo(req.body).then(data =>
 		res.json(data)
-	);
+	).catch(error => {
+		console.log(error);
+	});
 });
 
 app.post('/api/todos/:id', (req, res) => {
 	db.updateTodo(req.params.id).then(data =>
 		res.json(data)
-	);
+	).catch(error => {
+		console.log(error);
+	});
 });
 
 app.delete('/api/todos', (req, res) => {
 	db.deleteTodos(req.query).then(data =>
 		res.send({ success: true })
-	);
+	).catch(error => {
+		console.log(error);
+	});
 });
 
 app.get("*", (req, res, next) => {
-	const activeRoute = routes.find((route) => matchPath(req.url, route)) || {}
+	const activeRoute = routes.find((route) => matchPath(req.url, route)) || routes[0];
 
 	const promise = activeRoute.fetchInitialData
-		? activeRoute.fetchInitialData(req.path)
+		? activeRoute.fetchInitialData()
 		: Promise.resolve()
 
 	promise.then((data) => {
