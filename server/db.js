@@ -9,9 +9,6 @@ const TodoSchema = mongoose.Schema({
 
 const Todo = mongoose.model('Todo', TodoSchema);
 
-export default Todo;
-
-
 export function setUpConnection() {
 	mongoose.connect(`mongodb://${db.host}:${db.port}/${db.name}`)
 }

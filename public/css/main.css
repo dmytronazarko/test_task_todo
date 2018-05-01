@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-* {
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);* {
 	box-sizing: border-box;
 }
 
@@ -20,6 +19,18 @@ body {
 	padding: 5px 10px;
 	border: 1px solid #8e8e8e;
 	border-radius: 10px;
+}
+
+.add-todo input::-webkit-input-placeholder {
+	color: #8e8e8e;
+}
+
+.add-todo input:-ms-input-placeholder {
+	color: #8e8e8e;
+}
+
+.add-todo input::-ms-input-placeholder {
+	color: #8e8e8e;
 }
 
 .add-todo input::placeholder {
@@ -87,3 +98,5 @@ body {
 	border: 0 !important;
 	color: #8e8e8e !important;
 }
+
+/*# sourceMappingURL=main.css.map*/

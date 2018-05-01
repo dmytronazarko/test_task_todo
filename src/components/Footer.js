@@ -3,7 +3,7 @@ import Link from './Link';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Footer = ({ toggleLink, clearCompleted, show }) => (
+const Footer = ({ clearCompleted, active }) => (
 	<div className="footer">
 		<span>Show:</span>
 		<NavLink className="link" exact to="/">All</NavLink>
@@ -13,15 +13,15 @@ const Footer = ({ toggleLink, clearCompleted, show }) => (
 		<Link onClick={() => clearCompleted()}
 			className="link link--clear"
 			text="Clear completed"
-			active={show === "SHOW_ACTIVE"}
+			active={active}
 		/>
 	</div>
 )
 
-Footer.propTypes = {
-	toggleLink: PropTypes.func.isRequired,
-	clearCompleted: PropTypes.func.isRequired,
-	show: PropTypes.string.isRequired
-}
+// Footer.propTypes = {
+// 	clearCompleted: PropTypes.func.isRequired,
+// 	active: PropTypes.bool.isRequired
+// }
 
 export default Footer
+

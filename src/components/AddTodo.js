@@ -11,9 +11,9 @@ const AddTodo = ({ onSubmit, inputRef }) => {
 	)
 }
 
-AddTodo.propTypes = {
-	onSubmit: PropTypes.func.isRequired,
-	inputRef: PropTypes.func.isRequired
-};
+// AddTodo.propTypes = {
+// 	onSubmit: PropTypes.func.isRequired,
+// 	inputRef: PropTypes.func.isRequired
+// };
 
 export default AddTodo
