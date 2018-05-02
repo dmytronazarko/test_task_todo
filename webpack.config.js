@@ -14,7 +14,7 @@ const browserConfig = {
 	devtool: 'cheap-module-source-map',
 	module: {
 		rules: [
-			{ test: /\.(js)$/, use: 'babel-loader' },
+			{ test: /\.(js)$/, use: 'babel-loader', exclude: /spec/ },
 			{
 				test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
 				loader: 'file-loader',
@@ -62,7 +62,7 @@ const serverConfig = {
 	devtool: 'cheap-module-source-map',
 	module: {
 		rules: [
-			{ test: /\.(js)$/, use: 'babel-loader' }
+			{ test: /\.(js)$/, use: 'babel-loader',  exclude: /spec/ }
 		]
 	},
 	plugins: [

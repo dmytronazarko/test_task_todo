@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "webpack -w & nodemon server.js",
-		"test": "jasmine"
+		"test": "babel-node spec/run.js"
 	},
 	"author": "",
 	"license": "ISC",
@@ -32,6 +32,7 @@
 	"dependencies": {
 		"autoprefixer": "^8.4.1",
 		"axios": "^0.18.0",
+		"babel-cli": "^6.26.0",
 		"body-parser": "^1.18.2",
 		"cors": "^2.8.4",
 		"css-loader": "^0.28.11",
@@ -45,6 +46,7 @@
 		"react": "^16.3.0",
 		"react-dom": "^16.3.0",
 		"react-router-dom": "^4.2.2",
+		"request": "^2.85.0",
 		"serialize-javascript": "^1.4.0"
 	}
 }

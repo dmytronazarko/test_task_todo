@@ -16,6 +16,7 @@ class App extends Component {
 		this.textInput = null;
 		this.todoList = null;
 
+		//fix it
 		this.onSubmit = this.onSubmit.bind(this)
 		this.clearCompleted = this.clearCompleted.bind(this)
 	}
@@ -57,11 +58,13 @@ class App extends Component {
 				},
 			})
 			.then(res => {
-				this.todoList.setState(prevState => ({
-					todos: prevState.todos.filter(todo =>
-						!todo.completed
-					)
-				}))
+				if (res.status === 204) {
+					this.todoList.setState(prevState => ({
+						todos: prevState.todos.filter(todo =>
+							!todo.completed
+						)
+					}))
+				}
 			}).catch(error => {
 				console.log(error);
 			}

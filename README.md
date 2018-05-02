@@ -9,4 +9,5 @@
 5. Enjoy!
 
 ### Testing
-```yarn test```
+Stop ```yarn dev```
+Run ```yarn test```

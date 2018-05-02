@@ -25,12 +25,17 @@ app.get('/api/todos', (req, res) => {
 	});
 });
 
-app.post('/api/todos', (req, res) => {
-	db.createTodo(req.body).then(data =>
-		res.json(data)
-	).catch(error => {
-		console.log(error);
-	});
+app.post('/api/todos', (req, res, next) => {
+	if (Object.keys(req.body).length === 0) {
+		res.status(400).send();
+		next('Request body is empty');
+	} else {
+		db.createTodo(req.body).then(data =>
+			res.status(201).json(data)
+		).catch(error => {
+			console.log(error);
+		});
+	}
 });
 
 app.post('/api/todos/:id', (req, res) => {
@@ -41,12 +46,17 @@ app.post('/api/todos/:id', (req, res) => {
 	});
 });
 
-app.delete('/api/todos', (req, res) => {
-	db.deleteTodos(req.query).then(data =>
-		res.send({ success: true })
-	).catch(error => {
-		console.log(error);
-	});
+app.delete('/api/todos', (req, res, next) => {
+	if (Object.keys(req.query).length === 0) {
+		res.status(400).send();
+		next('Request query is empty')
+	} else {
+		db.deleteTodos(req.query).then(data =>
+			res.status(204).send()
+		).catch(error => {
+			console.log(error);
+		});
+	}
 });
 
 app.get("*", (req, res, next) => {
@@ -83,6 +93,6 @@ app.get("*", (req, res, next) => {
 	}).catch(next)
 })
 
-app.listen(serverPort, () => {
+export default app.listen(serverPort, () => {
 	console.log(`Server is listening on port ${serverPort}`);
 });
