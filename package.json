@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"build": "webpack",
 		"dev": "webpack -w & nodemon server.js",
 		"test": "babel-node spec/run.js"
 	},
