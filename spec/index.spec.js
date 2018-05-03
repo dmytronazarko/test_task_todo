@@ -10,7 +10,7 @@ describe('TEST API', () => {
 	}
 	let createdTodo = null;
 
-	describe('CREATE', () => {
+	describe('CREATE todo', () => {
 		const data = {};
 		beforeAll((done) => {
 			request({
@@ -30,15 +30,15 @@ describe('TEST API', () => {
 			})
 		})
 
-		it('Status 200', () => {
+		it('Status 201', () => {
 			expect(data.status).toBe(201)
 		})
-		it('Body', () => {
+		it('Body should return created todo', () => {
 			expect(data.body).toEqual(jasmine.objectContaining(initialData))
 		})
 	})
 
-	describe('READ', () => {
+	describe('READ todo', () => {
 		const data = {};
 		beforeAll((done) => {
 			request.get(`${apiPrefix}/todos`, (err, resp, body) => {
@@ -50,12 +50,12 @@ describe('TEST API', () => {
 		it('Status 200', () => {
 			expect(data.status).toBe(200)
 		})
-		it('Body', () => {
+		it('Body should contain created item', () => {
 			expect(JSON.parse(data.body)).toEqual(jasmine.arrayContaining([createdTodo]))
 		})
 	})
 
-	describe('UPDATE', () => {
+	describe('UPDATE todo', () => {
 		const data = {};
 		beforeAll((done) => {
 			request.post(`${apiPrefix}/todos/${createdTodo.id}`, (err, resp, body) => {
@@ -67,13 +67,13 @@ describe('TEST API', () => {
 		it('Status 200', () => {
 			expect(data.status).toBe(200)
 		})
-		it('Body', () => {
+		it('Body should return updated item', () => {
 			createdTodo.completed = !createdTodo.completed;
 			expect(JSON.parse(data.body)).toEqual(jasmine.objectContaining(createdTodo))
 		})
 	})
 
-	describe('DELETE', () => {
+	describe('DELETE todo', () => {
 		const data = {};
 		beforeAll((done) => {
 			const params = qs.stringify({ids: [createdTodo.id]}, { arrayFormat: 'repeat' })

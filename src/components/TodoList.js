@@ -19,10 +19,6 @@ class TodoList extends Component {
 			todos,
 			loading: todos ? false : true,
 		}
-
-		this.fetchTodos = this.fetchTodos.bind(this)
-		this.toggleTodo = this.toggleTodo.bind(this)
-		this.filterTodos = this.filterTodos.bind(this)
 	}
 
 	componentDidMount() {
@@ -31,7 +27,7 @@ class TodoList extends Component {
 		}
 	}
 
-	fetchTodos() {
+	fetchTodos = () => {
 		this.setState(() => ({
 			loading: true
 		}))
@@ -44,8 +40,8 @@ class TodoList extends Component {
 		))
 	}
 
-	toggleTodo(id) {
-		axios.post(`${apiPrefix}/todos/${id}`)
+	toggleTodo = (id) => {
+		axios.post(`${apiPrefix}/todos/${id}`)``
 			.then(res => {
 				this.setState(prevState => ({
 					todos: prevState.todos.map(todo =>
@@ -60,7 +56,7 @@ class TodoList extends Component {
 		);
 	}
 
-	filterTodos(todos) {
+	filterTodos = (todos) => {
 		switch(this.props.match.params.show) {
 			case 'active':
 				return todos.filter(todo => !todo.completed);

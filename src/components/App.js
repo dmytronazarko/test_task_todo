@@ -15,13 +15,9 @@ class App extends Component {
 
 		this.textInput = null;
 		this.todoList = null;
-
-		//fix it
-		this.onSubmit = this.onSubmit.bind(this)
-		this.clearCompleted = this.clearCompleted.bind(this)
 	}
 
-	onSubmit(e) {
+	onSubmit = (e) => {
 		e.preventDefault()
 
 		const text = this.textInput.value;
@@ -46,7 +42,7 @@ class App extends Component {
 		this.textInput.value = ''
 	}
 
-	clearCompleted() {
+	clearCompleted = () => {
 		const ids = this.todoList.state.todos.slice()
 			.filter(todo => todo.completed)
 			.map(todo => todo.id);
