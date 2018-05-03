@@ -41,7 +41,7 @@ class TodoList extends Component {
 	}
 
 	toggleTodo = (id) => {
-		axios.post(`${apiPrefix}/todos/${id}`)``
+		axios.post(`${apiPrefix}/todos/${id}`)
 			.then(res => {
 				this.setState(prevState => ({
 					todos: prevState.todos.map(todo =>
